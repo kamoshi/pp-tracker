@@ -1,25 +1,43 @@
 <script lang="ts">
 import { fetchPackage } from "./api";
 import EventBox from "./EventBox.svelte";
-
+import Order from "./Order.svelte";
 
 	export let name: string;
+	const trackedOrders = ['D', 'F'];
+	let orderData: Mail[] = [];
+	let selected;
 
-	let eventHistory = [];
-	fetchPackage('D').then(res => {
-		console.log(res);
-		eventHistory = (<any>res)?.mailInfo.events || [];
-	});
+	$: mailEvents = orderData.find(item => item.number === selected)?.mailInfo.events || [];
+
+	function getPackageData(packages: string[]) {
+		Promise.all(packages.map(fetchPackage))
+			.then(res => orderData = res)
+			.catch(err => console.error(err));
+	}
+
+	function onOrderSelected(packageId: string) {
+		selected = packageId;
+	}
+
+	getPackageData(trackedOrders);
 	
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-
-	{#each eventHistory as item}
-		<EventBox mailEvent={item} />
+<aside>
+	{#each orderData as order (order.number)}
+		<Order {order} on:click={()=>onOrderSelected(order.number)}/>
 	{/each}
+</aside>
+	
+<main>
+	{#if selected !== undefined}
+		{#each mailEvents as mailEvent}
+			<EventBox {mailEvent}/>
+		{/each}
+	{:else}
+		<p>Please select an order to display events!</p>
+	{/if}
 </main>
 
 <style>

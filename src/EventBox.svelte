@@ -6,8 +6,8 @@
 <section>
     <h2>{mailEvent.name}</h2>
     <div>{mailEvent.postOffice?.name || ''}</div>
-    <div>{mailEvent.postOffice?.description.city}</div>
-    <div>{mailEvent.postOffice?.description.street}</div>
+    <div>{mailEvent.postOffice?.description?.city}</div>
+    <div>{mailEvent.postOffice?.description?.street}</div>
 </section>
 
 

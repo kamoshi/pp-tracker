@@ -1,4 +1,4 @@
-export async function fetchPackage(packageId: string): Promise<string> {
+export async function fetchPackage(packageId: string): Promise<Mail> {
   return await fetch('https://uss.poczta-polska.pl/uss/v1.0/tracking/checkmailex', {
     method: 'POST',
     headers: {
