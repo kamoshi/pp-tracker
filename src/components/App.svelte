@@ -52,7 +52,7 @@ import OrderList from "./OrderList.svelte";
 		display: flex;
 		flex-direction: column;
 
-		@media (min-width: 720px) {
+		@media (min-width: 1000px) {
 			flex-direction: row;
 		}
 	}
