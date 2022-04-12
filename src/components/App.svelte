@@ -40,20 +40,29 @@ import OrderList from "./OrderList.svelte";
 	
 <main>
 	{#if mail !== undefined}
-		<MailInfo {mail} />
+		<MailInfo class="mail-info" {mail} />
 		<EventHistory {mail} />
 	{:else}
 		<p>Please select an order to display events!</p>
 	{/if}
 </main>
 
-<style>
+<style lang="scss">
 	:global(#root) {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
+
+		@media (min-width: 720px) {
+			flex-direction: row;
+		}
 	}
 
 	main {
+		flex-grow: 1;
 		padding: 1em;
+
+		:global(.mail-info) {
+			margin-bottom: 1em;
+		}
 	}
 </style>

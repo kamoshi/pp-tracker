@@ -13,6 +13,7 @@ import OrderItem from "./OrderItem.svelte";
 </script>
 
 <aside>
+    <h2>Tracked packages</h2>
     <div class="order-list">
         {#each orders as order (order.number)}
 		    <OrderItem {order} on:showTracking on:deleteTracking />
@@ -23,3 +24,9 @@ import OrderItem from "./OrderItem.svelte";
         <button on:click={trackPackage}>Track package!</button>
     </div>
 </aside>
+
+<style lang="scss">
+    aside {
+        flex-shrink: 0;
+    }
+</style>
