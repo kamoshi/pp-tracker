@@ -1,16 +1,14 @@
 <script lang="ts">
-import { onMount } from "svelte";
-import { fetchPackage } from "./api";
-import EventBox from "./components/EventBox.svelte";
-import OrderList from "./components/OrderList.svelte";
-import { loadTracked, saveTracked } from "./memory";
+import { fetchPackage, loadTracked, saveTracked } from "../utils";
+import EventHistory from "./EventHistory.svelte";
+import MailInfo from "./MailInfo.svelte";
+import OrderList from "./OrderList.svelte";
 
-	export let name: string;
 	let trackedOrders = loadTracked();
 	let orderData: Mail[] = [];
 	let selected;
 
-	$: mailEvents = orderData.find(item => item.number === selected)?.mailInfo.events || [];
+	$: mail = orderData.find(item => item.number === selected);
 	$: getPackageData(trackedOrders);
 
 	function getPackageData(packages: string[]) {
@@ -28,23 +26,34 @@ import { loadTracked, saveTracked } from "./memory";
 		if (!packageId || trackedOrders.includes(packageId))
 			return;
 		trackedOrders = [...trackedOrders, packageId];
-		saveTracked(trackedOrders);
 	}
 
 	function onDeleteTracking(event) {
 		const packageId = event.detail?.packageId;
 		trackedOrders = trackedOrders.filter(pId => pId !== packageId);
 	}
+
+	$: saveTracked(trackedOrders);
 </script>
 
 <OrderList orders={orderData} on:addTracking={onAddTracking} on:showTracking={onShowTracking} on:deleteTracking={onDeleteTracking} />
 	
 <main>
-	{#if selected !== undefined}
-		{#each mailEvents as mailEvent}
-			<EventBox {mailEvent}/>
-		{/each}
+	{#if mail !== undefined}
+		<MailInfo {mail} />
+		<EventHistory {mail} />
 	{:else}
 		<p>Please select an order to display events!</p>
 	{/if}
 </main>
+
+<style>
+	:global(#root) {
+		display: flex;
+		flex-direction: row;
+	}
+
+	main {
+		padding: 1em;
+	}
+</style>

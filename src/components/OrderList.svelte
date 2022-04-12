@@ -6,7 +6,7 @@ import OrderItem from "./OrderItem.svelte";
     export let orders: Mail[] = [];
     let inputModel = '';
 
-    function onTrack() {
+    const trackPackage = () => {
         dispatch('addTracking', { packageId: inputModel });
         inputModel = '';
     }
@@ -20,18 +20,6 @@ import OrderItem from "./OrderItem.svelte";
     </div>
     <div class="order-field">
         <input type="text" bind:value={inputModel}>
-        <button on:click={onTrack}>Track package!</button>
+        <button on:click={trackPackage}>Track package!</button>
     </div>
 </aside>
-
-
-<style>
-    .order-list {
-        display: flex;
-        flex-direction: column;
-    }
-    .order-field {
-        display: flex;
-        flex-direction: row;
-    }
-</style>

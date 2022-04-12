@@ -9,3 +9,22 @@ export async function fetchPackage(packageId: string): Promise<Mail> {
   })
     .then(res => res.json());
 }
+
+
+const KEY = 'packages';
+
+export function saveTracked(packageIds: string[]) {
+  const encoded = JSON.stringify(packageIds);
+  localStorage.setItem(KEY, encoded);
+}
+
+export function loadTracked(): string[] {
+  const encoded = localStorage.getItem(KEY) || '[]';
+  return JSON.parse(encoded);
+}
+
+
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return `${date.toISOString().slice(0, 16).replace('T', ' ')}`;
+}
