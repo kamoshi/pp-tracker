@@ -6,7 +6,7 @@ import { formatDate } from "../utils";
 </script>
 
 
-<section>
+<div>
     <h2>Package status</h2>
     {#if mail && mail.mailStatus !== -1 && events}
         <table>
@@ -30,11 +30,11 @@ import { formatDate } from "../utils";
     {:else}
         Package doesn't exist!
     {/if}
-</section>
+</div>
 
 
 <style lang="scss">
-    section {
+    div {
         padding: 1em;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 

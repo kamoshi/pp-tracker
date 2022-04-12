@@ -6,7 +6,7 @@ import { createEventDispatcher } from "svelte";
     let hovering = false;
 </script>
 
-<section
+<div
     on:mouseenter={() => hovering = true}
     on:mouseleave={() => hovering = false}
     >
@@ -18,10 +18,10 @@ import { createEventDispatcher } from "svelte";
             Delete
         </button>
     {/if}
-</section>
+</div>
 
 <style lang="scss">
-    section {
+    div {
         display: flex;
         flex-direction: row;
         justify-content: space-between;

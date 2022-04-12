@@ -12,7 +12,7 @@ import OrderItem from "./OrderItem.svelte";
     }
 </script>
 
-<aside>
+<div>
     <h2>Tracked packages</h2>
     <div class="order-list">
         {#each orders as order (order.number)}
@@ -23,10 +23,10 @@ import OrderItem from "./OrderItem.svelte";
         <input type="text" bind:value={inputModel}>
         <button on:click={trackPackage}>Track package!</button>
     </div>
-</aside>
+</div>
 
 <style lang="scss">
-    aside {
+    div {
         flex-shrink: 0;
     }
 </style>

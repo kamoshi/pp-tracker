@@ -5,7 +5,7 @@
     let _class;
 </script>
 
-<section class={_class}>
+<div class={_class}>
     <h2>Package information</h2>
     {#if mail && mail.mailStatus !== -1}
         <table>
@@ -37,10 +37,10 @@
     {:else}
         The package couldn't be found!
     {/if}
-</section>
+</div>
 
 <style lang="scss">
-    section {
+    div {
         padding: 1em;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 

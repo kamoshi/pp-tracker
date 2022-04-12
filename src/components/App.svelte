@@ -38,14 +38,14 @@ import OrderList from "./OrderList.svelte";
 
 <OrderList orders={orderData} on:addTracking={onAddTracking} on:showTracking={onShowTracking} on:deleteTracking={onDeleteTracking} />
 	
-<main>
+<div>
 	{#if mail !== undefined}
 		<MailInfo class="mail-info" {mail} />
 		<EventHistory {mail} />
 	{:else}
 		<p>Please select an order to display events!</p>
 	{/if}
-</main>
+</div>
 
 <style lang="scss">
 	:global(#root) {
@@ -57,7 +57,7 @@ import OrderList from "./OrderList.svelte";
 		}
 	}
 
-	main {
+	div {
 		flex-grow: 1;
 		padding: 1em;
 
