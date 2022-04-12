@@ -51,10 +51,6 @@ import OrderList from "./OrderList.svelte";
 	:global(#root) {
 		display: flex;
 		flex-direction: column;
-
-		@media (min-width: 1000px) {
-			flex-direction: row;
-		}
 	}
 
 	div {
