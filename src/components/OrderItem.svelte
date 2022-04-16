@@ -1,18 +1,18 @@
 <script lang="ts">
 import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
-    export let order: Mail;
+    export let packageId: string;
 </script>
 
 <div class="row-wrap">
     <button
         class="label"
-        on:click={() => dispatch('showTracking', { packageId: order.number })}>
-        {order.number}
+        on:click={() => dispatch('showTracking', { packageId })}>
+        {packageId}
     </button>
     <button
         class="delete"
-        on:click={() => dispatch('deleteTracking', { packageId: order.number })}>
+        on:click={() => dispatch('deleteTracking', { packageId })}>
         Delete
     </button>
 </div>

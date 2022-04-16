@@ -3,7 +3,7 @@ import { createEventDispatcher } from "svelte";
 import OrderItem from "./OrderItem.svelte";
     const dispatch = createEventDispatcher();
     
-    export let orders: Mail[] = [];
+    export let packageIds: string[] = [];
     let inputModel = '';
 
     const trackPackage = () => {
@@ -15,8 +15,8 @@ import OrderItem from "./OrderItem.svelte";
 <div class="card">
     <h2>Tracked packages</h2>
     <div class="order-list">
-        {#each orders as order (order.number)}
-		    <OrderItem {order} on:showTracking on:deleteTracking />
+        {#each packageIds as packageId (packageId)}
+		    <OrderItem {packageId} on:showTracking on:deleteTracking />
 	    {/each}
     </div>
     <div class="order-field">
