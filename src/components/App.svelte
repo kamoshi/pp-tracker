@@ -55,6 +55,7 @@ import OrderList from "./OrderList.svelte";
 		margin-bottom: 1em;
 		padding: 1em;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		background-color: white;
 	}
 
 	.loader-wrap {
