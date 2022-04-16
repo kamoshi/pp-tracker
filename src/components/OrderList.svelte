@@ -12,7 +12,7 @@ import OrderItem from "./OrderItem.svelte";
     }
 </script>
 
-<div>
+<div class="card">
     <h2>Tracked packages</h2>
     <div class="order-list">
         {#each orders as order (order.number)}
@@ -26,7 +26,10 @@ import OrderItem from "./OrderItem.svelte";
 </div>
 
 <style lang="scss">
-    div {
-        flex-shrink: 0;
+    h2 {
+        margin-top: 0;
+    }
+    .order-field {
+        margin-top: 1em;
     }
 </style>

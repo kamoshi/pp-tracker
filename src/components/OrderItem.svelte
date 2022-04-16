@@ -2,35 +2,43 @@
 import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
     export let order: Mail;
-
-    let hovering = false;
 </script>
 
-<div
-    on:mouseenter={() => hovering = true}
-    on:mouseleave={() => hovering = false}
-    >
-    <div class="label" on:click={() => dispatch('showTracking', { packageId: order.number })}>
+<div class="row-wrap">
+    <button
+        class="label"
+        on:click={() => dispatch('showTracking', { packageId: order.number })}>
         {order.number}
-    </div>
-    {#if hovering}
-        <button on:click={() => dispatch('deleteTracking', { packageId: order.number })}>
-            Delete
-        </button>
-    {/if}
+    </button>
+    <button
+        class="delete"
+        on:click={() => dispatch('deleteTracking', { packageId: order.number })}>
+        Delete
+    </button>
 </div>
 
 <style lang="scss">
-    div {
+    .row-wrap {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         height: 2em;
+        padding-left: 1em;
+
+        button {
+            margin: 0;
+            cursor: pointer;
+        }
         
         .label {
             flex-grow: 1;
-            cursor: pointer;
+            text-align: left;
+            background-color: unset;
+            
+            &:not(:focus) {
+                border: unset;
+            }
         }
     }
 </style>

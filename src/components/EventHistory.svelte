@@ -6,7 +6,7 @@ import { formatDate } from "../utils";
 </script>
 
 
-<div>
+<div class="card">
     <h2>Package status</h2>
     {#if mail && mail.mailStatus !== -1 && events}
         <table>
@@ -34,16 +34,11 @@ import { formatDate } from "../utils";
 
 
 <style lang="scss">
-    div {
-        padding: 1em;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    h2 {
+        margin-top: 0;
+    }
 
-        h2 {
-            margin-top: 0;
-        }
-
-        table {
-            width: 100%;
-        }
+    table {
+        width: 100%;
     }
 </style>

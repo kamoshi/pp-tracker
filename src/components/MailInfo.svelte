@@ -1,11 +1,8 @@
 <script lang="ts">
     export let mail: Mail;
-    export { _class as class };
-
-    let _class;
 </script>
 
-<div class={_class}>
+<div class="card">
     <h2>Package information</h2>
     {#if mail && mail.mailStatus !== -1}
         <table>
@@ -40,12 +37,7 @@
 </div>
 
 <style lang="scss">
-    div {
-        padding: 1em;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-        h2 {
-            margin-top: 0;
-        }
+    h2 {
+        margin-top: 0;
     }
 </style>
