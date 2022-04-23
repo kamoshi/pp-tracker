@@ -33,6 +33,8 @@ export class LazyLoader {
   private readonly storage: FetchedData = {};
   
   async fetchPackage(packageId: string) {
+    if (!packageId)
+      return undefined;
     if (packageId in this.storage)
       return this.storage[packageId].data;
 
