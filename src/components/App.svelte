@@ -1,17 +1,18 @@
 <script lang="ts">
-import { fetchPackage, loadTracked, saveTracked } from "../utils";
+import { LazyLoader, loadTracked, saveTracked } from "../utils";
 import EventHistory from "./EventHistory.svelte";
 import MailInfo from "./MailInfo.svelte";
 import OrderList from "./OrderList.svelte";
 
-	let packageIds: string[] = loadTracked();
-	let selected;
+  const loader = new LazyLoader();
+  let packageIds: string[] = loadTracked();
+  let selectedId;
 
-	$: mail = fetchPackage(selected);
+	$: mail = loader.fetchPackage(selectedId);
 	$: saveTracked(packageIds);
 
 	function onShowTracking(event) {
-		selected = event.detail?.packageId;
+		selectedId = event.detail?.packageId;
 	}
 
 	function onAddTracking(event) {
@@ -34,7 +35,7 @@ import OrderList from "./OrderList.svelte";
 	on:deleteTracking={onDeleteTracking} />
 	
 
-{#if selected !== undefined}
+{#if selectedId !== undefined}
 	{#await mail}
 		<div class="loader-wrap">
 			<div class="loader"></div>

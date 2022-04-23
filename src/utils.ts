@@ -28,3 +28,16 @@ export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return `${date.toISOString().slice(0, 16).replace('T', ' ')}`;
 }
+
+export class LazyLoader {
+  private readonly storage: FetchedData = {};
+  
+  async fetchPackage(packageId: string) {
+    if (packageId in this.storage)
+      return this.storage[packageId].data;
+
+    const data = await fetchPackage(packageId);
+    this.storage[packageId] = { timestamp: Date.now(), data };
+    return data;
+  }
+}

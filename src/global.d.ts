@@ -59,3 +59,10 @@ interface Mail {
   number: string;
   mailStatus: number;
 }
+
+interface FetchedData {
+  [key: string]: {
+    timestamp: number;
+    data: Mail;
+  };
+}
